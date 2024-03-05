@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Number</title>
+    <style>
+        .container {
+            width: 500px;
+            height: 200px;
+            margin: 100px auto;
+            background-color: blanchedalmond;
+            border: 2px solid brown;
+            border-radius: 20px;
+            color: brown;
+        }
+
+        h2 {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .btn {
+            display: block;
+            padding: 5px 10px;
+            background-color: rgb(228, 172, 132);
+            border: 1px solid black;
+            border-radius: 20px;
+            margin: 10px auto;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: rgb(88, 55, 30);
+            color: white;
+            transition: 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="btns">
+        <h2 id="welcome">Welcome to Number Guessing Game! Generate your number</h2>
+        <button class="btn" id="Genbtn">Generate</button>
+        <button class="btn" id="Guessbtn">Guess</button>
+    </div>
+
+    <script>
+
+        //Generating random number:
+
+
+        var rand = 0;
+        function random_num() {
+            let rand_min = 0;
+            let rand_max = 100;
+            var newrand = Math.round(rand_min + (rand_max - rand_min) * Math.random());
+            return newrand;
+        }
+
+        //Genarate button event listener
+
+        btn = document.getElementById('Genbtn');
+
+        btn.addEventListener('click', () => {
+            rand = random_num();
+        });
+        btn.addEventListener('click', show);
+        btn.addEventListener('click', showrand);
+
+        function show() {
+            alert("Number Generated. Start Guessing. Number is between 0 to 100")
+        }
+        function showrand() {
+            console.log(rand)
+        }
+
+
+        //Guess button event listener
+        var guess_number = 0;
+        btn2 = document.getElementById('Guessbtn');
+
+        btn2.addEventListener('click', () => {
+            let guess_num = prompt("Please Enter your Guess Number");
+            guess_number = guess_num;
+        })
+
+        btn2.addEventListener('click', show_guess_number);
+        function show_guess_number() {
+            console.log("Guess Number is", guess_number);
+        }
+
+        btn2.addEventListener('click', check_guess_number);
+
+        //Checking Guess number
+
+        function check_guess_number() {
+            if (guess_number == rand) {
+                alert(`Congratulations You Won The Game. Number was ${rand}`);
+            }
+            else if (guess_number > rand) {
+                alert(`${guess_number} is Too High. Guess Lower Value`);
+            }
+            else {
+                alert(`${guess_number} is Too Low. Guess Higher Value`)
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
